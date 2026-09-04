@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adkins Family Dashboard</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+        #loading { text-align: center; padding: 50px; color: #5f6368; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading Family Dashboard...</div>
+    <div id="app-content"></div>
+
+    <script>
+        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW:
+        var scriptUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+        // Check if there's a week parameter in the current URL and pass it along
+        var currentParams = window.location.search;
+        var fetchUrl = scriptUrl + currentParams;
+
+        fetch(fetchUrl)
+            .then(response => response.text())
+            .then(html => {
+                // Extract body content from the returned Apps Script HTML string
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, 'text/html');
+                
+                // Replace document body content dynamically
+                document.body.innerHTML = doc.body.innerHTML;
+
+                // Fix internal navigation links so they stay on your GitHub page with the week parameter
+                var links = document.querySelectorAll('a');
+                links.forEach(link => {
+                    var href = link.getAttribute('href');
+                    if (href && href.includes('script.google.com')) {
+                        var urlObj = new URL(href, window.location.origin);
+                        var weekParam = urlObj.searchParams.get('week');
+                        if (weekParam !== null) {
+                            link.setAttribute('href', window.location.pathname + '?week=' + weekParam);
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                document.getElementById('loading').innerHTML = 'Failed to load dashboard. Check your internet or script URL.';
+            });
+    </script>
+</body>
+</html>
