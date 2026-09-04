@@ -3,21 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="refresh" content="1800">
   <title>Adkins Family Dashboard</title>
   <style>
-    body { margin: 0; padding: 0; background-color: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
-    .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 500px; }
-    h1 { color: #1a73e8; font-size: 20px; margin-bottom: 10px; }
-    p { color: #555; font-size: 14px; line-height: 1.5; }
-    a { display: inline-block; margin-top: 15px; background-color: #1a73e8; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; }
-    a:hover { background-color: #1557b0; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f0f2f5;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Adkins Family Dashboard</h1>
-    <p>Your dashboard is successfully connected! To view your live calendar, preschool menus, and shared task lists seamlessly on your first-gen iPad Air, connect your hosted Apps Script web app endpoint below.</p>
-    <a href="YOUR_APPS_SCRIPT_WEB_APP_URL_HERE">Open Live Dashboard</a>
-  </div>
+  <iframe src="https://script.google.com/macros/s/AKfycbzoC4e2aRS8t1hVhm4qjb5ru6BQrjdZQT1eG1IUkZAa5GGlCUt48glHqzK-1ZYY538g/exec"></iframe>
 </body>
 </html>
